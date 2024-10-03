@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Tech GC Portal",
+  "name": "Tech GC Portal is a platform for IIT Bombay students to get information about Hostel Technical Genral Championship.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "itclogo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "itclogo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
