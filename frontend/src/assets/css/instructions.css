@@ -1,0 +1,10 @@
+.int{
+    background-image: url("../meetings-page-bg.jpg");
+    width: 70%;
+    height: 100%;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    padding: 5% 15% 0 15%;
+    
+}

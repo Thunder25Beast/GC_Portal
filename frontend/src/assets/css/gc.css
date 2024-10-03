@@ -1,0 +1,171 @@
+.gc *{
+    text-decoration: none;
+    list-style: none;
+    margin: 0;
+    color: white;
+    word-wrap: break-word;
+}
+
+.gc{   
+    background-image:url(../meetings-page-bg.jpg);
+    height: 100%;
+}
+
+.gc .main{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    height: max-content;
+    
+}
+.gc .card{
+    border-radius: 10px;
+    margin: 10px;
+    background-color:#2b3035;
+}
+
+.gc .card .container{
+   margin: 20px 10px 20px 20px;
+}
+
+
+.gc .main .left{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+/***********************left-top*/
+.gc .title{
+    font-family: Montserrat,sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.25rem, 4.5vw, 3rem);
+    line-height: 1;
+    color:rgb(214 201 248);
+    text-shadow: .1px .1px white;
+}
+
+.gc hr{
+    margin: 10px 0 10px 0;
+    border: 1px solid rgba(255,255,255,.3);
+    width: 90%;
+}
+
+.gc a{
+    font-weight: 800;
+    color:rgb(214 201 248);
+}
+
+.gc .regdate{
+    font-weight: 600;
+    color: rgb(214 201 248);
+}
+
+.gc .p-text{  
+    font-weight: 400;
+    font-size: clamp(0.875rem, 1.75vw, 1rem);
+    font-family: "Source Sans Pro", sans-serif;
+
+}
+
+/*********************left bottom*/
+.gc .left-bottom{
+    font-family: Montserrat,sans-serif;
+}
+.gc .scoreboard{
+    font-weight: 500;
+    font-size: 1.25rem
+}
+
+.gc .hostel-score{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.gc .hostel{
+    display: flex;
+    flex-direction: row;
+    margin: 10px 0 10px 0;
+}
+
+.gc .hostname{
+    width:70px;
+}
+.gc .hosteldata{
+    background-color: rgb(214 201 248) /*rgb(186, 186, 186)*/;
+    border-radius: 20px;
+    margin:0 10px 0 10px;
+    text-align: center;
+    color: black;
+    font-weight: 800;
+    
+}
+
+/**************** right*/
+.gc .right{
+    width: 30%;
+    height: 104%;
+    overflow: hidden;
+}
+
+.gc .right img{
+    width: 90%;
+    box-shadow: 0 0 5px white;
+    border-radius: 25px;
+    display: block;
+    margin: 3% auto 10px auto;
+}
+
+.gc .gc-details{
+    padding: 20px 40px;
+}
+
+.gc .gc-details ul li{
+    font-weight: 300;
+    font-size: clamp(0.875rem, 1.75vw, 1rem);
+    font-family: "Source Sans Pro", sans-serif;
+    margin-bottom: 10px;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .gc .main{
+        flex-flow: column-reverse;
+    }
+
+    .gc .main .left{
+        width: 100%;
+    }
+
+    .gc .right{
+        display: flex;
+        width: 97%;
+        align-items: center;
+    }
+
+    .gc .right img{
+        width: 200px;
+    }
+
+    .gc .right .gc-details{
+        width: 40%;
+        padding: 0;
+    }
+
+}
+
+@media only screen and (max-width: 426px) {
+    .gc .p-text *, .hostel{
+        font-size: smaller;
+    }
+    .gc .right{
+        flex-flow: column;
+        width: 94%;
+    }
+
+    .gc .gc-details{
+        padding: 0;
+        width: 100;
+    }
+}

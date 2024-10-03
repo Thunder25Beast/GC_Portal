@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+.backgroundhs{
+    background-image:url(/src/assets/meetings-page-bg.jpg);
+    /* display: grid; */
+    /* justify-content: space-around; */
+    padding: 0rem 2yrem;
+    height: 100%;
+    /* grid-template-columns: 1fr 3fr; */
+}
+.sidebarhs{
+    position: relative;
+    top: 10px;
+    width: min-content;
+    margin: auto;
+     /* height: 50%;    */ 
+    overflow-x: hidden;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0,1);
+    z-index: 2;
+    border-radius: 10px;
+    /* text-align: center; */
+}
+/* .genre{
+    display: inline;
+} */
+
+.sidebarhs ul{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+.sidebarhs ul li{
+    list-style: none;
+    border-radius: 10px;
+    width: auto;
+    padding: 10px;
+    margin: 0 25px 0 15px;
+}
+.sidebarhs ul li:hover{  
+    background: #272C31;
+}
+
+#active-genre-page{
+    background: #c6c6c6;
+}
+/* .sidebarhs ul li:first-child{
+    width: 100%;
+    
+    margin-bottom: 20px;
+    font-weight: 800;
+    border-bottom: 1px solid #fff;
+}
+.sidebarhs ul li:first-child:hover{
+    background: none;
+} */
+
+.sidebarhs ul li a{
+   width:100%;
+   text-decoration: none;
+   color: #6e6e6e;
+   /* color: #fff; */
+   height: 3rem;
+   display: flex;
+   align-items: center;
+   font-weight: 7.2px;
+   font-size: 17.2px;
+   font-weight: bold;
+  
+}
+.sidebarhs ul li a:hover{
+    /* color: #2790d6; */
+    /* color: black; */
+}
+.sidebarhs a{
+    text-align: center !important;
+   
+}
+.sidebarhs ul li a i{
+    /* min-width: 60px; */
+    font-size: 24px;
+    text-align: center;
+}
+.sidebarhs .titles{
+    padding: 0 10px;
+    font-size: 20px;
+    /* display: inline; */
+}
+
+.sidebarhs button{
+
+    position: relative;
+    left: 10px;
+    text-align: center;
+    background-color: transparent;
+    border-style: none;
+    width: max-content;
+    height: 40px;
+    outline: none;
+    font-size: 40px;
+    font-weight: 900;
+    color: #6e6e6e;
+}
+
+
+#hamburger{
+    display: none;
+    color: #6e6e6e;
+   padding: 2rem 3rem;
+   font-size: 1.8rem;
+   justify-content: center;
+   margin-left: 20px;
+}
+#close{
+    display: none;
+    color: #6e6e6e;
+   padding: 2rem 3rem;
+   font-size: 1.8rem;
+   justify-content: center;
+   margin-left: 20px;
+}
+
+@media(max-width:1400px){  
+    #hamburger{
+        display: none;    
+    }
+}
+@media(max-width:1200px){  
+    #hamburger{
+        display: none;
+        
+    }
+}
+@media(max-width:1084px){  
+    #hamburger{
+        display: none;
+       
+    }
+}
+
+
+
+
+@media(max-width:990px){ 
+    #hamburger{
+        display: none;
+        
+    }
+
+}
+/* @media(max-width:910px){
+     .sidebarhs{
+        width: 50%;
+        margin-right: 30px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left: -10px;
+        
+     }
+     .containerhs{
+        margin-left: 0px;
+     }   
+} */
+
+@media(max-width:867px){
+    
+    #hamburger{
+        display: block;
+        position: relative;
+        left: -100px;
+    }
+    #close{
+        position: relative;
+       
+    }
+}
+
+
+    
+    /* .display{
+       display: none;
+    } */
+    @media(max-width:770px){
+    /* .sidebarhs ul{
+        display: flex;
+        flex-direction: column;
+    } */
+
+}
+
+
+
+.react-multi-carousel-list{
+    height: auto;  
+  }
+
+  .react-multi-carousel-track{
+    position: relative;
+    display: grid;
+    grid-template-columns: (2,0.8fr);
+    position: relative;
+    left: 50px;
+    top: 20px;
+   
+  }
+
+  .react-multi-carousel-item{
+    width: 600px!important;
+    display: flex;
+    
+    justify-content: center;
+    
+  }
+
+  
+
+.react-multi-carousel-dot-list {
+    display: none;
+}
+
+
+/* hostel1.css */
+
+/* ... Your existing CSS code ... */
+
+/* Add responsive styles using media queries */
+@media (max-width: 1400px) {
+    /* Hide the hamburger icon on larger screens */
+    #hamburger {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 1200px) {
+    /* Hide the hamburger icon on medium-sized screens */
+    #hamburger {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 1084px) {
+    /* Hide the hamburger icon on smaller screens */
+    #hamburger {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 990px) {
+    /* Hide the hamburger icon on even smaller screens */
+    #hamburger {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 867px) {
+    /* Show the hamburger icon and adjust its position on small screens */
+    #hamburger {
+      display: block;
+      position: relative;
+      left: -100px;
+    }
+  }
+  
+  @media (max-width: 770px) {
+    /* Add styles for screens with a maximum width of 770px */
+    /* For example, you can adjust the layout of the sidebar or carousel items */
+  }
+  
+  @media (max-width: 600px) {
+    /* Add styles for screens with a maximum width of 600px */
+    /* For example, you can adjust the layout of the sidebar or carousel items */
+  }
+  

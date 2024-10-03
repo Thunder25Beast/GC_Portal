@@ -1,0 +1,11 @@
+.footer{
+    position: absolute;
+    width: 100vw;
+    background-color: #2B3035;
+    border: 1px solid #363636;
+}
+
+.footer-heading{
+    text-align: center;
+    color: white;
+}

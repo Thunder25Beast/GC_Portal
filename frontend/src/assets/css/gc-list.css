@@ -1,0 +1,235 @@
+.gclist {
+  display: flex;
+  flex-flow: wrap column;
+  padding: 0 35px;
+  align-items: center;
+  height: 100%;
+  background: url("../meetings-page-bg.jpg");
+  /* z-index: -1; */
+}
+.gclist .wrapper {
+  max-width: 1100px;
+  width: calc(100%-45px);
+  position: relative;
+}
+
+.gclist .wrapper * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.gclist .wrapper i {
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  position: absolute;
+  text-align: center;
+  line-height: 50px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.23);
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+}
+.gclist .wrapper i:active {
+  transform: translateY(-50%) scale(0.85);
+}
+.gclist .wrapper i:first-child {
+  left: -22px;
+}
+.gclist .wrapper i:last-child {
+  right: -22px;
+}
+.gclist .wrapper .carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3) - 12px);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 16px;
+  border-radius: 8px;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.gclist .carousel::-webkit-scrollbar {
+  display: none;
+}
+.gclist .carousel.no-transition {
+  scroll-behavior: auto;
+}
+.gclist .carousel.dragging {
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+}
+.gclist .carousel.dragging .card {
+  cursor: grab;
+  user-select: none;
+}
+.gclist .carousel :where(.card, .img) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gclist .carousel .card {
+  scroll-snap-align: start;
+  height: 342px;
+  list-style: none;
+  cursor: pointer;
+  padding-bottom: 15px;
+  flex-direction: column;
+  border-radius: 8px;
+}
+.gclist .carousel .card .img {
+  background: transparent;
+  height: 100%;
+  width: 100%;
+}
+.gclist .card .img img {
+  width: 80%;
+  object-fit: cover;
+  margin: 0 10%;
+}
+
+.gclist .sidebarhs {
+  position: relative;
+  width: min-content;
+  overflow-x: hidden;
+  margin: 50px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.gclist .sidebarhs ul {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: nowrap; /* Allow flex items to wrap to new line on small screens */
+}
+
+.gclist .sidebarhs ul li {
+  list-style: none;
+  border-radius: 10px;
+  width: 100%; /* Adjusted to take full width of the container */
+  padding: 10px;
+  margin: 0 10px 10px 10px; /* Adjusted margin for better spacing */
+}
+
+.gclist .sidebarhs ul li:hover {
+  background: #272c31;
+}
+
+.gclist #active-genre-page {
+  background: rgba(198, 198, 198);
+}
+
+.gclist .sidebarhs ul li a {
+  width: 100%;
+  text-decoration: none;
+  color: #6e6e6e;
+  height: 3rem;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.gclist .sidebarhs ul li a i {
+  font-size: 24px;
+}
+
+.gclist .sidebarhs .titles {
+  font-size: 20px;
+}
+
+.gclist .sidebarhs button {
+  text-align: center;
+  background-color: transparent;
+  border-style: none;
+  width: max-content;
+  height: 40px;
+  outline: none;
+  font-weight: 900;
+  color: #6e6e6e;
+}
+
+@media screen and (max-width: 900px) {
+  .gclist {
+    padding: 0 27px;
+  }
+
+  .gclist .wrapper{
+    margin-top: 10%;
+  }
+
+  .gclist .sidebarhs ul li a i {
+    font-size: 20px;
+  }
+
+  .gclist .sidebarhs .titles {
+    font-size: 18px;
+  }
+  .gclist .wrapper .carousel {
+    grid-auto-columns: calc((100% / 2) - 9px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .gclist .sidebarhs ul li a i {
+    font-size: 16px;
+  }
+
+  .gclist .wrapper{
+    margin-top: 20%;
+  }
+
+  .gclist .sidebarhs .titles {
+    font-size: 14px;
+  }
+
+  .gclist .sidebarhs ul li a {
+    padding: 0;
+  }
+
+  .gclist .sidebarhs ul li {
+    margin: auto 1px auto 0;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .gclist {
+    padding: 10% 0;
+  }
+
+  .gclist .wrapper .carousel {
+    grid-auto-columns: 100%;
+  }
+  .gclist .sidebarhs ul li a i {
+    font-size: 14px;
+  }
+
+  .gclist .sidebarhs .titles {
+    font-size: 12px;
+  }
+
+  .gclist .sidebarhs ul li a {
+    height: 1.5rem;
+  }
+
+  .gclist .wrapper{
+    margin-top: 40%;
+  }
+
+  .gclist .sidebarhs ul li {
+    margin: auto 1px auto 0;
+  }
+
+  .gclist .sidebarhs {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 350px) {
+}

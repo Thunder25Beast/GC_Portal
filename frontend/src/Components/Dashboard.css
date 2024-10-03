@@ -1,0 +1,394 @@
+.mainds {
+  position: absolute;
+  width: calc(100% - 45px);
+  min-height: 50vh;
+  left: 45px;
+  /* background: url(../src/assets/meetings-page-bg.jpg); */
+  margin-right: 10px;
+  z-index: -1;
+  display: flex;
+}
+
+.imgds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.cardsds {
+  /* margin-top: 30px; */
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  justify-content: space-around;
+  margin: auto;
+  width: 50%;
+}
+.cardsds_genre {
+  /* margin-top: 30px; */
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5%;
+  justify-content: space-around;
+  margin: auto;
+  width: 60%;
+}
+.cardsds_head {
+  /* margin-top: 30px; */
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  justify-content: space-around;
+  margin: auto;
+  width: 50%;
+}
+.cardsds_heading {
+  /* margin-top: 30px; */
+  padding: 10px 20px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 20px;
+  justify-content: space-around;
+  margin: auto;
+  width: 50%;
+}
+.top_grid {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin-left: 20%;
+}
+
+.cardsds_head .card {
+  /* background: linear-gradient(45deg, #2a1874, #18015e); */
+  background-color: #cccccc;
+  padding-inline: 20px;
+  display: flex;
+  width: 150px;
+  margin: auto;
+  height: 90px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 4px 16px 3px rgba(190, 183, 183, 0.4);
+  position: relative;
+  /* bottom: -10px; */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.cardsds_genre .card {
+  /* background: linear-gradient(45deg, #2a1874, #18015e); */
+  background-color: #9ec0cbb6;
+  padding-inline: 20px;
+  display: flex;
+  width: 150px;
+  margin: auto;
+  height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  position: relative;
+  /* bottom: -10px; */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.cardsds_head .card_heading {
+  /* background: linear-gradient(45deg, #402f86, #5b4a8d); */
+  background-color: #5f656c;
+  padding: 15px;
+  padding-block: 5px;
+  max-width: 300px;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  max-height: 120px;
+  box-shadow: 0px 0px 3px 2px rgba(255, 233, 233, 0.4);
+}
+
+.numberds_heading {
+  font-size: 28px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+}
+.numberds {
+  font-size: 28px;
+  font-weight: 500;
+  color: #000000;
+}
+.numberds_genre {
+  font-size: 23px;
+  font-weight: 500;
+  color: #000;
+}
+.bg .image {
+  max-width: 55%;
+}
+.image img {
+  max-height: 100px;
+  max-width: 100%;
+}
+
+.card_heading .card-contents {
+  width: 40%;
+}
+.nameds {
+  font-size: 20px;
+  font-weight: 500;
+  color: #ffffffb5;
+}
+.cardds-name {
+  color: #db2929;
+  font-weight: 600;
+}
+.cardds-name-genre {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.icon-boxds i {
+  font-size: 40px;
+  color: #db2929;
+}
+
+.tablesds {
+  width: 96%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px;
+  align-items: self-start;
+  padding: 0 20px 20px 20px;
+}
+
+td {
+  color: rgb(0, 0, 0);
+}
+.last-appointments {
+  min-height: 350px;
+  background: #efefeff5;
+  padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: auto;
+  margin-top: 10px;
+  width: 90%;
+  /* border-radius: 2.5%; */
+}
+
+.headingds {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #444;
+}
+
+.appointments,
+table {
+  margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.appointments thead td {
+  font-weight: 600;
+  color: #444;
+}
+
+.appointments td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.appointments tbody tr:hover {
+  background: #dcdada;
+  color: #fff;
+}
+
+.appointments tbody tr:last-child {
+  border-bottom: none;
+}
+.appointments td {
+  padding: 9px 5px;
+}
+
+.appointments td i {
+  padding: 7px;
+  color: #fff;
+  border-radius: 550px;
+}
+
+.doctor-visiting td i {
+  padding: 7px;
+  color: #fff;
+  border-radius: 550px;
+}
+
+.last-appointments table tbody td:last-child {
+  white-space: nowrap;
+}
+
+@media (max-width: 3000px) {
+  .card_heading {
+    width: 400px;
+  }
+}
+@media (max-width: 1200px) {
+  .top_grid {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 880px) {
+  .cardsds {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cardsds_genre .card {
+    width: 100px;
+  }
+  .cardsds_head .card {
+    width: 100px;
+  }
+  .cardsds_head .card_heading {
+    width: 275px;
+  }
+}
+@media (max-width: 730px) {
+  .cardsds_head {
+    display: grid;
+    /* grid-template-rows: 1fr 1fr;  */
+    grid-template-columns: 1fr;
+  }
+  .cardsds_genre {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .top_grid {
+    width: 100%;
+    margin: auto;
+  }
+
+  .last-appointments td:nth-child(4) {
+    display: none;
+  }
+  .card_heading {
+    width: 300px;
+  }
+}
+@media (max-width: 530px) {
+  .top_grid {
+    flex-wrap: wrap;
+  }
+  .cardsds_head {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 420px) {
+  .last-appointments,
+  .doctor-visiting {
+    font-size: 70%;
+    padding: 10px;
+    min-height: 200px;
+  }
+
+  .cardsds,
+  .tablesds {
+    padding: 10px;
+  }
+  .card_heading {
+    width: 250px;
+  }
+}
+@media (max-width: 376px) {
+  .cardsds_head {
+    grid-gap: 10px;
+  }
+  .cardsds_genre .card {
+    width: 80px;
+    height: 60px;
+  }
+  .cardsds_head .card {
+    width: 100px;
+    height: 70px;
+  }
+  .cardsds_head .card_heading {
+    width: 200px;
+    height: 80px;
+  }
+  .numberds_heading {
+    font-size: 20px;
+  }
+  .nameds {
+    font-size: 13px;
+  }
+  .image img {
+    max-height: 80px;
+  }
+  .cardsds_head .card {
+    width: 80px;
+  }
+  .icon-boxds i {
+    font-size: 30px;
+    color: #db2929;
+  }
+  .numberds {
+    font-size: 25px;
+  }
+  .cardds-name {
+    font-size: 15px;
+  }
+  .numberds_genre {
+    font-size: 17px;
+  }
+  .cardds-name-genre {
+    font-size: 14px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.headingds h2 {
+  position: relative;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+}
+.headingds h2::before {
+  content: "";
+  position: absolute;
+
+  width: 50px;
+  height: 3px;
+  background-color: rgb(235, 34, 78);
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: animate 3s linear infinite;
+}
+@keyframes animate {
+  0% {
+    width: 60px;
+  }
+  50% {
+    width: 80px;
+  }
+  100% {
+    width: 60px;
+  }
+}
+
+.tableheading2 {
+  background-color: #e3dede;
+}
