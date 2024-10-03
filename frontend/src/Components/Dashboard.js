@@ -27,7 +27,7 @@ class Dashboard extends React.Component {
     const gc_id = link_url.split("/"); // Retrieve the hostel value from navigation param
     const hostel = gc_id[gc_id.length - 1]; // Check the value of hostel
     axios
-      .get(`http://gcbackend.tech-iitb.org/${hostel}/`, this.config)
+      .get(`https://gcbackend.tech-iitb.org/${hostel}/`, this.config)
       .then((res) => {
         const { details, scores } = res.data; // Destructure the "details" and "scores" objects from the API response
         console.log(details); // Check the structure of the "details" object
@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
 
     // Fetch data for hostel images and names
     axios
-      .get("http://gcbackend.tech-iitb.org/hostels/", this.config)
+      .get("https://gcbackend.tech-iitb.org/hostels/", this.config)
       .then((res) => {
         const hostelData = res.data; // Save the hostel data
         console.log(hostelData);
@@ -57,7 +57,7 @@ class Dashboard extends React.Component {
 
     // fetch gc data
     axios
-      .get("http://gcbackend.tech-iitb.org/gclist/", this.config)
+      .get("https://gcbackend.tech-iitb.org/gclist/", this.config)
       .then((res) => {
         const gcData = res.data; // Save the hostel data
         console.log(gcData);

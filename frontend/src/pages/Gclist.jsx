@@ -20,7 +20,7 @@ class GC_Genre1 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("http://gcbackend.tech-iitb.org/gc/genre1/", this.config)
+      .get("https://gcbackend.tech-iitb.org/gc/genre1/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
@@ -123,7 +123,7 @@ class GC_Genre2 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("http://gcbackend.tech-iitb.org/gc/genre2/", this.config)
+      .get("https://gcbackend.tech-iitb.org/gc/genre2/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
@@ -227,7 +227,7 @@ class GC_Genre3 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("http://gcbackend.tech-iitb.org/gc/genre3/", this.config)
+      .get("https://gcbackend.tech-iitb.org/gc/genre3/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
