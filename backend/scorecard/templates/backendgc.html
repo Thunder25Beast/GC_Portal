@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .card {
+        margin-bottom: 30px;
+        justify-content: center;
+        align: center;
+      }
+      p {
+        text-align: center;
+        overflow-text: hidden;
+      }
+    </style>
+    <title>All Tech GCs</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">All Tech GCs</h1>
+
+      <div class="row">
+        {%for event in events%}
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              src="../../media/{{event.poster}}"
+              class="card-img-top"
+              alt="image"
+            />
+            <div class="card-body">
+              <h5 class="card-title" align="center">{{event.name}}</h5>
+              <p class="card-text">{{event.description}}</p>
+              <p class="card-text">START TIMELINE : {{event.start_timeline}}</p>
+              <p class="card-text">END TIMELINE : {{event.end_timeline}}</p>
+              <p>
+                <a href="{{event.id}}" class="btn btn-primary"
+                  >Enter score</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+        {%endfor%}
+      </div>
+    </div>
+  </body>
+</html>
