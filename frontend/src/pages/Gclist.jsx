@@ -20,7 +20,7 @@ class GC_Genre1 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("http://localhost:8000/gc/genre1/", this.config)
+      .get("http://gcbackend.tech-iitb.org/gc/genre1/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
@@ -123,7 +123,7 @@ class GC_Genre2 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("http://localhost:8000/gc/genre2/", this.config)
+      .get("http://gcbackend.tech-iitb.org/gc/genre2/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
@@ -181,25 +181,25 @@ class GC_Genre2 extends React.Component {
               const { id, name, description, poster } = post;
               return (
                 // <li className="card" key={id}>
-                  <motion.div
-                    key={id}
-                    className="card"
-                    whileHover={{ scale: 1.07 }}
-                    whileTap={{ scale: 2, opacity: 0 }}
-                    transition={{
-                      duration: 0.3,
-                    }}
-                  >
-                    <div className="img">
-                      <Link to={`/GC/Genre1/${id}`}>
-                        <img
-                          src={"http://127.0.0.1:8000" + poster}
-                          alt="img"
-                          draggable="false"
-                        />
-                      </Link>
-                    </div>
-                  </motion.div>
+                <motion.div
+                  key={id}
+                  className="card"
+                  whileHover={{ scale: 1.07 }}
+                  whileTap={{ scale: 2, opacity: 0 }}
+                  transition={{
+                    duration: 0.3,
+                  }}
+                >
+                  <div className="img">
+                    <Link to={`/GC/Genre1/${id}`}>
+                      <img
+                        src={"http://127.0.0.1:8000" + poster}
+                        alt="img"
+                        draggable="false"
+                      />
+                    </Link>
+                  </div>
+                </motion.div>
                 // </li>
               );
             })}
@@ -227,7 +227,7 @@ class GC_Genre3 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("http://localhost:8000/gc/genre3/", this.config)
+      .get("http://gcbackend.tech-iitb.org/gc/genre3/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,

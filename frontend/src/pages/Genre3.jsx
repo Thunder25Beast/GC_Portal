@@ -33,7 +33,7 @@ class Overall extends React.Component {
   componentDidMount() {
     // Fetch data for leaderboard
     axios
-      .get("http://localhost:8000/genregenre3/", this.config)
+      .get("http://gcbackend.tech-iitb.org/genregenre3/", this.config)
       .then((res) => {
         const data = res.data;
         console.log(data);
@@ -50,7 +50,7 @@ class Overall extends React.Component {
 
     // Fetch data for hostel images and names
     axios
-      .get("http://localhost:8000/hostels/", this.config) // Replace the URL with the actual API endpoint for hostel data
+      .get("http://gcbackend.tech-iitb.org/hostels/", this.config) // Replace the URL with the actual API endpoint for hostel data
       .then((res) => {
         const hostelData = res.data;
         console.log(hostelData);
