@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [
   '127.0.0.1'
 ]
 
+CSRF_TRUSTED_ORIGINS_ALLOW_ALL = True
+
 
 # Application definition
 
@@ -73,8 +75,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'https://gc.tech-iitb.org',
 ]
-
-CORS_ORIGIN_ALLOW_ALL = True
 
 # CORS_ALLOW_METHODS = [
 # 'DELETE',
