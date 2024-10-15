@@ -50,7 +50,7 @@ class GC_Genre1 extends React.Component {
               <div className="display">
                 <Link to="/GC/Genre1">
                   <i className="fas fa-th-large"></i>
-                  <button className="titles .btnhs">Genre 1 </button>
+                  <button className="titles .btnhs"></button>
                 </Link>
               </div>
             </li>
@@ -91,7 +91,7 @@ class GC_Genre1 extends React.Component {
                     <div className="img">
                       <Link to={`/GC/Genre1/${id}`}>
                         <img
-                          src={"http://127.0.0.1:8000" + poster}
+                          src={"https://gcbackend.tech-iitb.org/" + poster}
                           alt="img"
                           draggable="false"
                         />
@@ -193,7 +193,7 @@ class GC_Genre2 extends React.Component {
                   <div className="img">
                     <Link to={`/GC/Genre1/${id}`}>
                       <img
-                        src={"http://127.0.0.1:8000" + poster}
+                        src={"https://gcbackend.tech-iitb.org" + poster}
                         alt="img"
                         draggable="false"
                       />
@@ -304,7 +304,7 @@ class GC_Genre3 extends React.Component {
                   >
                     <Link to={`/GC/Genre1/${id}`}>
                       <img
-                        src={"http://127.0.0.1:8000" + poster}
+                        src={"https://gcbackend.tech-iitb.org" + poster}
                         alt="img"
                         draggable="false"
                       />

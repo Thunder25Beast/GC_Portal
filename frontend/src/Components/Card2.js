@@ -12,7 +12,7 @@ class Card2 extends React.Component {
               <figure>
                 <img
                   className="imagecd"
-                  src={"http://127.0.0.1:8000" + image}
+                  src={"https://gcbackend.tech-iitb.org" + image}
                   alt="image"
                 ></img>
               </figure>

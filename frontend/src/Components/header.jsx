@@ -10,7 +10,7 @@ function Header() {
         <img className="image" alt="logo" src={itclogo} />
       </div>
       <div className="header_center">
-        <h1>Technical GC 23-24</h1>
+        <h1>Technical GC Portal</h1>
       </div>
       <div className="header_right">
         {/* <div className="profilelogo">

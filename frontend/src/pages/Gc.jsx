@@ -42,7 +42,7 @@ class Gc extends React.Component {
 
     render() {
         const { gcdata, scoresdata, maxscore } = this.state;
-        const imgurl = "http://127.0.0.1:8000" + gcdata.poster
+        const imgurl = "https://gcbackend.tech-iitb.org" + gcdata.poster
         return (
             <div className="gc body">
                 <div className="main">
