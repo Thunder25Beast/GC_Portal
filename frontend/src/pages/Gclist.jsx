@@ -20,7 +20,7 @@ class GC_Genre1 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("https://gc.tech-iitb.org/gcbackend/gc/genre1/", this.config)
+      .get("https://gcbackend.tech-iitb.org/gc/genre1/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
@@ -142,7 +142,7 @@ class GC_Genre1 extends React.Component {
                       <div className="img">
                         <Link to={`/GC/Genre1/${id}`}>
                           <img
-                            src={"https://gc.tech-iitb.org" + poster}
+                            src={"https://gcbackend.tech-iitb.org" + poster}
                             alt="img"
                             draggable="false"
                           />
@@ -174,7 +174,7 @@ class GC_Genre2 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("https://gc.tech-iitb.org/gcbackend/gc/genre2/", this.config)
+      .get("https://gcbackend.tech-iitb.org/gc/genre2/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
@@ -295,7 +295,7 @@ class GC_Genre2 extends React.Component {
                     <div className="img">
                       <Link to={`/GC/Genre1/${id}`}>
                         <img
-                          src={"https://gc.tech-iitb.org" + poster}
+                          src={"https://gcbackend.tech-iitb.org" + poster}
                           alt="img"
                           draggable="false"
                         />
@@ -330,7 +330,7 @@ class GC_Genre3 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("https://gc.tech-iitb.org/gcbackend/gc/genre3/", this.config)
+      .get("https://gcbackend.tech-iitb.org/gc/genre3/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
@@ -459,7 +459,7 @@ class GC_Genre3 extends React.Component {
                     >
                       <Link to={`/GC/Genre1/${id}`}>
                         <img
-                          src={"https://gc.tech-iitb.org" + poster}
+                          src={"https://gcbackend.tech-iitb.org" + poster}
                           alt="img"
                           draggable="false"
                         />
@@ -493,7 +493,7 @@ class GC_Genre4 extends React.Component {
 
   componentDidMount() {
     axios // loading backend data
-      .get("https://gc.tech-iitb.org/gcbackend/gc/genre4/", this.config)
+      .get("https://gcbackend.tech-iitb.org/gc/genre4/", this.config)
       .then((res) => {
         this.setState({
           Mydata: res.data,
@@ -622,7 +622,7 @@ class GC_Genre4 extends React.Component {
                     >
                       <Link to={`/GC/Genre1/${id}`}>
                         <img
-                          src={"https://gc.tech-iitb.org" + poster}
+                          src={"https://gcbackend.tech-iitb.org/" + poster}
                           alt="img"
                           draggable="false"
                         />

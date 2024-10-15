@@ -10,7 +10,7 @@ const GC_Genre3 = () => {
 
   useEffect(() => {
     axios
-      .get("https://gc.tech-iitb.org/gcbackend/gc/genre3/")
+      .get("https://gcbackend.tech-iitb.org/gc/genre3/")
       .then((res) => {
         setMydata(res.data);
       })

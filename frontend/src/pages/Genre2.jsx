@@ -33,7 +33,7 @@ class Overall extends React.Component {
   componentDidMount() {
     // Fetch data for leaderboard
     axios
-      .get("https://gc.tech-iitb.org/gcbackend/genregenre2/", this.config)
+      .get("https://gcbackend.tech-iitb.org/genregenre2/", this.config)
       .then((res) => {
         const data = res.data;
         // console.log(data);
@@ -50,7 +50,7 @@ class Overall extends React.Component {
 
     // Fetch data for hostel images and names
     axios
-      .get("https://gc.tech-iitb.org/gcbackend/hostels/", this.config) // Replace the URL with the actual API endpoint for hostel data
+      .get("https://gcbackend.tech-iitb.org/hostels/", this.config) // Replace the URL with the actual API endpoint for hostel data
       .then((res) => {
         const hostelData = res.data;
         // console.log(hostelData);

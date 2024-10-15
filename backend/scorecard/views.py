@@ -209,7 +209,7 @@ def hostel_scorecard(request, name):
 
     genres = GCEvent.objects.distinct().values('genre')
     for genre in genres:
-        genre_url = 'https://itc.gymkhana.iitb.ac.in/gcbackend/genre' + genre['genre'] + '/'
+        genre_url = 'https://gcbackend.tech-iitb.org/genre' + genre['genre'] + '/'
         # genre_scorecard = requests.get(genre_url, headers={
             # 'Authorization': 'Token 3af5accdebeb5b899e6f9197b0b822f657af008f'}).json()
         genre_scorecard = local_genre(genre)    

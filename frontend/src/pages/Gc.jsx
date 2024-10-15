@@ -26,7 +26,7 @@ class Gc extends React.Component {
         const gc_id = link_url.split('/'); // Retrieve the hostel value from navigation param
         const id = gc_id[gc_id.length - 1]; // Check the value of hostel
         axios
-            .get(`https://gc.tech-iitb.org/gcbackend/GC${id}/`, this.config)
+            .get(`https://gcbackend.tech-iitb.org/GC${id}/`, this.config)
             .then((res) => {
                 const { gc, scores } = res.data;
                 this.setState({
@@ -42,7 +42,8 @@ class Gc extends React.Component {
 
     render() {
         const { gcdata, scoresdata, maxscore } = this.state;
-        const imgurl = "https://gc.tech-iitb.org/gcbackend/" + gcdata.poster
+        const imgurl = "https://gcbackend.tech-iitb.org" + gcdata.poster
+        console.log(imgurl)
         return (
             <div className="gc body">
                 <div className="main">
