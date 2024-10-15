@@ -34,6 +34,12 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS_ALLOW_ALL = True
 
+CSRF_TRUSTED_ORIGINS=[
+    'https://gcbackend.tech-iitb.org',
+]
+
+CSRF_COOKIE_SAMESITE = 'None'
+
 
 # Application definition
 
