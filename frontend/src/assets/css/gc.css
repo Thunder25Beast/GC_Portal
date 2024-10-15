@@ -89,7 +89,7 @@
 }
 
 .gc .hostname{
-    width:70px;
+    width:fit-content;
 }
 .gc .hosteldata{
     background-color: rgb(214 201 248) /*rgb(186, 186, 186)*/;

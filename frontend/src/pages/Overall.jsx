@@ -26,17 +26,17 @@ class Overall extends React.Component {
 
   handleClick = (hostel) => {
     this.setState({ hostel });
-    console.log("Selected hostel:", hostel);
+    // console.log("Selected hostel:", hostel);
     // this.props.navigation.navigate("/Dashboard", {hostel: hostel});
   };
 
   componentDidMount() {
     // Fetch data for leaderboard
     axios
-      .get("https://gcbackend.tech-iitb.org/overall/", this.config)
+      .get("https://gc.tech-iitb.org/gcbackend/overall/", this.config)
       .then((res) => {
         const data = res.data;
-        console.log(data);
+        // console.log(data);
         this.setState({
           details: data,
           first: data[0],
@@ -50,10 +50,10 @@ class Overall extends React.Component {
 
     // Fetch data for hostel images and names
     axios
-      .get("https://gcbackend.tech-iitb.org/hostels/", this.config) // Replace the URL with the actual API endpoint for hostel data
+      .get("https://gc.tech-iitb.org/gcbackend/hostels/", this.config) // Replace the URL with the actual API endpoint for hostel data
       .then((res) => {
         const hostelData = res.data;
-        console.log(hostelData);
+        // console.log(hostelData);
         this.setState({
           hostelData,
         });
@@ -78,30 +78,30 @@ class Overall extends React.Component {
     return (
       <div className="bg">
         <div className="leaderboard_heading">
-          <h2 data-text="Leaderboards">Leaderboards</h2>
+          <h2 data-text="Leaderboards">Leaderboard 24-25</h2>
         </div>
         <div className="animation">
           <div className="list">
+            <ul className="listing_overall">
+              <li className="list_item_on button-1 button-3">
+                <Link to="/Overall">Overall</Link>
+              </li>
+            </ul>
             <ul className="listing">
-              <li className="list_item_on button-1">
-                <Link to="/Overall" style={{ fontWeight: 600 }}>
-                  Overall
-                </Link>
+              {/* <li className="list_items button-2">
+                <Link to="/Overall">Overall</Link>
+              </li> */}
+              <li className="list_items button-2">
+                <Link to="/Genre1">Software</Link>
               </li>
               <li className="list_items button-2">
-                <Link to="/Genre1" style={{ fontWeight: 600 }}>
-                  Genre1
-                </Link>
+                <Link to="/Genre2">Hardware</Link>
               </li>
               <li className="list_items button-2">
-                <Link to="/Genre2" style={{ fontWeight: 600 }}>
-                  Genre2
-                </Link>
+                <Link to="/Genre3">Pure Sciences</Link>
               </li>
               <li className="list_items button-2">
-                <Link to="/Genre3" style={{ fontWeight: 600 }}>
-                  Genre3
-                </Link>
+                <Link to="/Genre4">Non Core</Link>
               </li>
             </ul>
           </div>
@@ -177,9 +177,8 @@ class Overall extends React.Component {
             </div>
           </Link>
         </dir>
-
         {this.state.details.map((output, id) => {
-          if (id == 0 || id == 1 || id == 2) {
+          if (id == 0 || id == 1 || id == 2 || output.total_score == 0) {
             return null;
           }
           // Find the corresponding hostel data based on hostel name
@@ -200,7 +199,7 @@ class Overall extends React.Component {
                         <img src={hostelInfo?.image} alt="img_hostel" />
                       </div>
                       <div className="name" style={{ width: 240 }}>
-                        <h3 className="name text-dark" style={{ margin: 5 }}>
+                        <h3 className="name text-dark" style={{ margin: 0 }}>
                           {output.name}-{hostelInfo?.tittle}
                         </h3>
                         {/* <div className="span"></div> */}

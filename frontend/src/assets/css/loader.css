@@ -1,0 +1,42 @@
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+  }
+  
+  .trophy-icon {
+    font-size: 100px;
+    /* animation: rotate 2s linear infinite; */
+  }
+  
+  .loading-bar {
+    width: 200px;
+    height: 10px;
+    background-color: #000000;
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  .loading-progress {
+    width: 0;
+    height: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: fill 3s linear forwards;
+  }
+  
+  
+  @keyframes fill {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  

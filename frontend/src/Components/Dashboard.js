@@ -27,11 +27,11 @@ class Dashboard extends React.Component {
     const gc_id = link_url.split("/"); // Retrieve the hostel value from navigation param
     const hostel = gc_id[gc_id.length - 1]; // Check the value of hostel
     axios
-      .get(`https://gcbackend.tech-iitb.org/${hostel}/`, this.config)
+      .get(`https://gc.tech-iitb.org/gcbackend/${hostel}/`, this.config)
       .then((res) => {
         const { details, scores } = res.data; // Destructure the "details" and "scores" objects from the API response
-        console.log(details); // Check the structure of the "details" object
-        console.log(scores); // Check the structure of the "scores" array
+        // console.log(details); // Check the structure of the "details" object
+        // console.log(scores); // Check the structure of the "scores" array
         this.setState({
           details: details,
           scores: scores,
@@ -43,10 +43,10 @@ class Dashboard extends React.Component {
 
     // Fetch data for hostel images and names
     axios
-      .get("https://gcbackend.tech-iitb.org/hostels/", this.config)
+      .get("https://gc.tech-iitb.org/gcbackend/hostels/", this.config)
       .then((res) => {
         const hostelData = res.data; // Save the hostel data
-        console.log(hostelData);
+        // console.log(hostelData);
         this.setState({
           hostelData, // Set the hostelData state once
         });
@@ -57,10 +57,10 @@ class Dashboard extends React.Component {
 
     // fetch gc data
     axios
-      .get("https://gcbackend.tech-iitb.org/gclist/", this.config)
+      .get("https://gc.tech-iitb.org/gcbackend/gclist/", this.config)
       .then((res) => {
         const gcData = res.data; // Save the hostel data
-        console.log(gcData);
+        // console.log(gcData);
         this.setState({
           gcData, // Set the hostelData state once
         });

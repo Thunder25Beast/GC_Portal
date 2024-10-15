@@ -103,6 +103,7 @@
 }
 
 .gclist .sidebarhs ul {
+  padding-left: 0;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -160,7 +161,7 @@
     padding: 0 27px;
   }
 
-  .gclist .wrapper{
+  .gclist .wrapper {
     margin-top: 10%;
   }
 
@@ -181,7 +182,7 @@
     font-size: 16px;
   }
 
-  .gclist .wrapper{
+  .gclist .wrapper {
     margin-top: 20%;
   }
 
@@ -218,7 +219,7 @@
     height: 1.5rem;
   }
 
-  .gclist .wrapper{
+  .gclist .wrapper {
     margin-top: 40%;
   }
 
@@ -231,5 +232,18 @@
   }
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 800px) {
+  .gclist .sidebarhs ul {
+    flex-wrap: wrap;
+    
+  }
+  .gclist .sidebarhs ul li{
+    flex-wrap: wrap;
+    width: 35%;
+    
+  }
+  .gclist .sidebarhs{
+    width: 100%;
+
+  }
 }

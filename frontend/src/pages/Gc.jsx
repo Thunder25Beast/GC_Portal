@@ -26,7 +26,7 @@ class Gc extends React.Component {
         const gc_id = link_url.split('/'); // Retrieve the hostel value from navigation param
         const id = gc_id[gc_id.length - 1]; // Check the value of hostel
         axios
-            .get(`https://gcbackend.tech-iitb.org/GC${id}/`, this.config)
+            .get(`https://gc.tech-iitb.org/gcbackend/GC${id}/`, this.config)
             .then((res) => {
                 const { gc, scores } = res.data;
                 this.setState({
@@ -42,7 +42,7 @@ class Gc extends React.Component {
 
     render() {
         const { gcdata, scoresdata, maxscore } = this.state;
-        const imgurl = "https://gcbackend.tech-iitb.org" + gcdata.poster
+        const imgurl = "https://gc.tech-iitb.org/gcbackend/" + gcdata.poster
         return (
             <div className="gc body">
                 <div className="main">
@@ -60,7 +60,7 @@ class Gc extends React.Component {
                                         </p>
                                     </div>
                                     <div className="submmitionlink">
-                                        <a href="http://" target="_blank" rel="noopener noreferrer">SUBMISSION LINK</a>
+                                        <a href="#" target="_blank" rel="noopener noreferrer">SUBMISSION LINK</a>
                                     </div>
                                 </div>
                             </div>
@@ -76,11 +76,11 @@ class Gc extends React.Component {
                                             <td className="hostname">Hostel {output.hostel_id}</td>
                                             <motion.div
                                                 initial={{ width: 0 }}
-                                                animate={{ width: output.score * 50 / (maxscore.score) + "%" }}
+                                                animate={{ width: output.score * 65 / (maxscore.score) + "%" }}
                                                 transition={{ duration: output.score * 2 / (maxscore.score) }}
                                                 className="hosteldata"
                                             ></motion.div>
-                                            <div className="hostelscore">{output.score} Points</div>
+                                            <div className="hostelscore">{output.score}</div>
                                         </tr>
                                     ))}
                                 </table>
@@ -91,10 +91,9 @@ class Gc extends React.Component {
                         <img src={imgurl} alt="" srcSet="" />
                         <div className="gc-details p-text">
                             <ul>
-                                <li><span>Maths n Physics Club</span></li>
-                                <li>High Prep GC</li>
-                                <li>Hardware Probably</li>
-                                <li>{gcdata.genre}</li>
+                                <li><span>{gcdata.club}</span></li>
+                                <li>{gcdata.prep}</li>
+                                <li>{gcdata.gc_genre}</li>
                             </ul>
                         </div>
                     </div>

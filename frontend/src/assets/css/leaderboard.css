@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap");
+
 .bg {
   background-image: url(../meetings-page-bg.jpg);
   padding: 10px;
@@ -126,7 +128,7 @@ h2::before {
 .listing {
   text-align: center;
   /* width: 30%; */
-
+  padding: 0 ;
   margin-left: 24%;
   position: relative;
   background-color: #d1d5db1d;
@@ -135,7 +137,29 @@ h2::before {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   height: 60px;
+  /* height: fit-content; */
   width: 52%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+  margin-block: 25px;
+  /* color: #000; */
+}
+.listing_overall {
+  text-align: center;
+  /* width: 30%; */
+  padding: 0 1rem;
+  margin-left: 44%;
+  margin-inline: auto;
+  position: relative;
+  background-color: #d1d5db1d;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 60px;
+  width: 150px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -245,6 +269,8 @@ h2::before {
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
   color: grey;
+  font-family: Montserrat;
+  font-size: small;
 }
 .button-1:hover {
   box-shadow: 0 0 10px 0 rgb(205, 185, 185), 0 0 20px 2px grey;
@@ -255,11 +281,20 @@ h2::before {
   background-color: rgba(198, 198, 198);
   border: 3px solid rgba(198, 198, 198);
   border-radius: 4px;
+  font-family: Montserrat;
+  font-size: small;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
-  color: grey;
+  /* color: grey; */
 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-3 {
+  width: 60%;
+  /* font-weight: bold; */
+  font-size: large;
+  font-family: Montserrat;
 }
 
 .button-2:hover {
@@ -429,6 +464,7 @@ h3 {
   }
 
   .leaderboard-cards-container {
+    padding: 0;
     scale: 1;
   }
   .leaderboard-card_heading {
@@ -462,6 +498,7 @@ h3 {
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    padding: 0;
   }
 
   .leaderboard-cards {
@@ -547,7 +584,7 @@ h3 {
   }
 }
 
-@media only screen and (max-width: 389px) {
+@media only screen and (max-width: 390px) {
   .list_item_on {
     font-size: 12px;
     font-weight: 500;
@@ -562,4 +599,26 @@ h3 {
   .hello {
     width: 170px;
   }
+}
+@media only screen and (max-width: 460px) {
+  .listing{
+    width: 90%;
+    height: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    justify-content: space-evenly;
+  }
+  
+  .listing .button-2{
+    margin-top: 0.8rem;
+    width: 80px;
+    /* margin-left: ; */
+  }
+
+  .button-1{
+    margin-top: 0.8rem;
+    width: 80px;
+  }
+
 }

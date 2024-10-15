@@ -311,6 +311,7 @@ table {
 @media (max-width: 376px) {
   .cardsds_head {
     grid-gap: 10px;
+    
   }
   .cardsds_genre .card {
     width: 80px;

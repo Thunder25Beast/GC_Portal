@@ -24,11 +24,6 @@ const routes = [
     name: "GCs",
     icon: "🏅",
   },
-  {
-    path: "/s",
-    name: "Discussion forum",
-    icon: "💬",
-  },
 ];
 
 const SideBar = ({ children }) => {
