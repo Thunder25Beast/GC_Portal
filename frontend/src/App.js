@@ -33,7 +33,7 @@ function App() {
   }, []);
 
   return (
-    <Router basename="techgc">
+    <Router>
       <div>
         {loadingComplete ? (
           <>
