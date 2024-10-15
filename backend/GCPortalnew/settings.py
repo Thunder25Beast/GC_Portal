@@ -25,7 +25,12 @@ SECRET_KEY = 'django-insecure-8rfr0s5v!%4an&suwpm4=%x8g=&0!u2-d&qp3&lu#yub@$+_ic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://itc.gymkhana.iitb.ac.in','localhost','itc.gymkhana.iitb.ac.in', '127.0.0.1']
+ALLOWED_HOSTS = [
+  'https://gcbackend.tech-iitb.org',
+  'localhost',
+  'gcbackend.tech-iitb.org', 
+  '127.0.0.1'
+]
 
 
 # Application definition
