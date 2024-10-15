@@ -8,6 +8,7 @@ from django.shortcuts import render, redirect
 from .models import GCEvent, Hostel, Score
 from .forms import gcForm
 from django.utils.timezone import now
+from django.views.decorators.csrf import csrf_exempt
 import requests
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -34,7 +35,6 @@ def backendgc(request):
     events = GCEvent.objects.all()
     context = {'events': events}
     return render(request, "backendgc.html", context)
-
 
 @staff_member_required
 @api_view(['GET', 'POST'])
@@ -78,6 +78,53 @@ def overall(request):
         previous_total_score = total_score
     return Response(scorecard)
 
+def local_overall():
+    scorecard = list(Hostel.objects.all().values('name'))
+
+    for item in scorecard:
+        value = item['name']
+        host = Hostel.objects.get(name=value)
+        scores = Score.objects.filter(hostel=host)
+
+        total = sum(some.score for some in scores)
+        item['total_score'] = total
+
+    scorecard = sorted(scorecard, key=lambda x: x['total_score'], reverse=True)
+    rank = 0
+    previous_total_score = None
+    for item in scorecard:
+        total_score = item['total_score']
+        if total_score != previous_total_score:
+            rank = rank + 1
+        item['rank'] = rank
+        previous_total_score = total_score
+    return scorecard
+
+def local_genre(genre):
+    Genre = GCEvent.objects.filter(genre=genre['genre'])
+    scorecard = list(Hostel.objects.all().values('name'))
+    for item in scorecard:
+        value = item['name']
+        host = Hostel.objects.get(name=value)
+        total = 0
+        for Event in Genre:
+            scores = Score.objects.filter(hostel=host, event=Event)
+            subtotal = sum(some.score for some in scores)
+            total = total+subtotal
+        item['total_score'] = total
+
+    scorecard = sorted(scorecard, key=lambda x: x['total_score'], reverse=True)
+
+    rank = 0
+    previous_total_score = None
+    for item in scorecard:
+        total_score = item['total_score']
+        if total_score != previous_total_score:
+            rank = rank + 1
+        item['rank'] = rank
+        previous_total_score = total_score
+    return scorecard
+
 
 @api_view(['GET'])
 @authentication_classes([TokenAuthentication])
@@ -120,8 +167,9 @@ def individualgc(request, id):  # GC ke details return
     # if gc.timeline <= datetime.datetime.now():
     if 2 > 1:
         scores = Score.objects.filter(event=gc).values().order_by('-score')
-        for rank, item in enumerate(scores, start=1):
-            item['rank'] = rank
+        for i in range(len(scores)):
+            scores[i]['hostel_name'] = Hostel.objects.get(
+                id=scores[i]['hostel_id']).name
 
         return Response({
             "scores": scores,
@@ -129,6 +177,7 @@ def individualgc(request, id):  # GC ke details return
         })
     else:
         return HttpResponse("NO SCORE TO SHOW YET")  # GC has not yet ended
+    
 
 
 @api_view(['GET'])
@@ -149,9 +198,10 @@ def hostel_scorecard(request, name):
 
     details = {}
     overall_rank = overall_score = 0
-    overall_url = 'http://127.0.0.1:8000/overall/'
-    overall_scorecard = requests.get(overall_url, headers={
-                                     'Authorization': 'Token 3af5accdebeb5b899e6f9197b0b822f657af008f'}).json()
+    # overall_url = 'https://itc.gymkhana.iitb.ac.in/gcbackend/overall/'
+    # overall_scorecard = requests.get(overall_url, headers={
+    #                                 'Authorization': 'Token 3af5accdebeb5b899e6f9197b0b822f657af008f'}).json()
+    overall_scorecard = local_overall()
     for rank, item in enumerate(overall_scorecard, start=1):
         if item['name'] == name:
             details["overall_score"] = item['total_score']
@@ -159,9 +209,10 @@ def hostel_scorecard(request, name):
 
     genres = GCEvent.objects.distinct().values('genre')
     for genre in genres:
-        genre_url = 'http://127.0.0.1:8000/genre' + genre['genre'] + '/'
-        genre_scorecard = requests.get(genre_url, headers={
-            'Authorization': 'Token 3af5accdebeb5b899e6f9197b0b822f657af008f'}).json()
+        genre_url = 'https://itc.gymkhana.iitb.ac.in/gcbackend/genre' + genre['genre'] + '/'
+        # genre_scorecard = requests.get(genre_url, headers={
+            # 'Authorization': 'Token 3af5accdebeb5b899e6f9197b0b822f657af008f'}).json()
+        genre_scorecard = local_genre(genre)    
         for rank, item in enumerate(genre_scorecard, start=1):
             if item['name'] == name:
                 details[genre['genre'] + "_rank"] = rank

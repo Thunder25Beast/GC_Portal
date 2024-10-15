@@ -1,1 +1,30 @@
-/env
+# django .gitignore
+
+# Ignore .env file
+.env
+
+# Ignore .vscode folder
+.vscode
+
+# Ignore .idea folder
+.idea
+
+# Ignore __pycache__ folder
+__pycache__
+
+# Ignore .DS_Store file
+.DS_Store
+
+# Ignore .pytest_cache folder
+.pytest_cache
+
+# Ignore .coverage file
+.coverage
+
+# Ignore .cache folder
+.cache
+
+# Ignore .pytest_cache folder
+.pytest
+
+env/

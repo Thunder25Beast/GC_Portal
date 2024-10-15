@@ -15,5 +15,4 @@ urlpatterns = [
     path('gc/<str:genre>/', gc_events, name='gc_events'),
     path('<str:name>/', hostel_scorecard, name='Hostel_scorecard'),
 
-
 ]

@@ -17,6 +17,11 @@ class GCEvent(models.Model):
     start_timeline = models.DateTimeField(default=now)
     end_timeline = models.DateTimeField(default=now)
     genre = models.CharField(max_length=50, null=True, blank=True)
+    club = models.CharField(max_length=100, null=True, blank=True)
+    prep = models.CharField(max_length=100, null=True, blank=True)
+    gc_genre = models.CharField(max_length=50, null=True, blank=True)
+    doc_link = models.CharField(max_length=200, null=True, blank=True)
+    link = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -24,7 +29,7 @@ class GCEvent(models.Model):
 class Score(models.Model):
     hostel = models.ForeignKey(Hostel, on_delete=models.CASCADE, null=True)
     event = models.ForeignKey(GCEvent, on_delete=models.CASCADE)
-    score = models.IntegerField(null=True)
+    score = models.FloatField(null=True)
 
     def __str__(self):
         return f"{self.hostel} - {self.event}: {self.score}"
