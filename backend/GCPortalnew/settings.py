@@ -37,6 +37,8 @@ CSRF_Trusted_Origins = [
     'https://gcbackend.tech-iitb.org',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 
 # Application definition
@@ -71,13 +73,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-CORS_ORIGIN_ALLOW_ALL = True
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'https://gc.tech-iitb.org',
 ]
 
 # CORS_ALLOW_METHODS = [
