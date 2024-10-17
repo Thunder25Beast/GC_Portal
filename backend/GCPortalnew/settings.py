@@ -32,13 +32,14 @@ ALLOWED_HOSTS = [
   '127.0.0.1'
 ]
 
-CSRF_TRUSTED_ORIGINS_ALLOW_ALL = True
-
-CSRF_TRUSTED_ORIGINS=[
+CSRF_Trusted_Origins = [ 
+    'https://gc.tech-iitb.org',
+    'http://localhost:3000',
     'https://gcbackend.tech-iitb.org',
+    'http://localhost:8000'
 ]
 
-CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = 'Allow'
 
 
 # Application definition
