@@ -61,7 +61,8 @@ class Gc extends React.Component {
                                         </p>
                                     </div>
                                     <div className="submmitionlink">
-                                        <a href="#" target="_blank" rel="noopener noreferrer">SUBMISSION LINK</a>
+                                        <a href={gcdata.link} target="_blank" rel="noopener noreferrer"> Rulebook</a>
+
                                     </div>
                                 </div>
                             </div>
