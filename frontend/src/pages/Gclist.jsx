@@ -622,7 +622,7 @@ class GC_Genre4 extends React.Component {
                     >
                       <Link to={`/GC/Genre1/${id}`}>
                         <img
-                          src={"https://gcbackend.tech-iitb.org/" + poster}
+                          src={"https://gcbackend.tech-iitb.org" + poster}
                           alt="img"
                           draggable="false"
                         />
