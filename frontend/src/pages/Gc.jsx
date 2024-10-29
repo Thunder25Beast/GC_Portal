@@ -54,7 +54,7 @@ class Gc extends React.Component {
                                     {gcdata.name}</div>
                                 <hr />
                                 <div className="discription-container">
-                                    <div className="regdate">Registration Deadline: 23 March 11:59 PM</div>
+                                    <div className="regdate">Registration Deadline: {gcdata.end_timeline}</div>
                                     <div className="description p-text">
                                         <p>
                                             {gcdata.description}
