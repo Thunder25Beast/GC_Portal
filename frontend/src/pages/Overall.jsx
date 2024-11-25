@@ -178,7 +178,7 @@ class Overall extends React.Component {
           </Link>
         </dir>
         {this.state.details.map((output, id) => {
-          if (id == 0 || id == 1 || id == 2 ) {
+          if (id === 0 || id === 1 || id === 2 ) {
             return null;
           }
           const hostelInfo = hostelData.find(

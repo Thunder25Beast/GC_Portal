@@ -387,7 +387,7 @@ class GC_Genre3 extends React.Component {
                     <button className="titles">Non Core</button>
                   </Link>
                 </div>
-              </li>
+              </li>,
             </ul>
           </div>
           <h1 style={{ color: "white" }}>NO GC TO SHOW</h1>;
