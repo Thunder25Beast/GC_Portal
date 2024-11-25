@@ -54,7 +54,7 @@ class Gc extends React.Component {
                                     {gcdata.name}</div>
                                 <hr />
                                 <div className="discription-container">
-                                    <div className="regdate">Registration Deadline: {gcdata.end_timeline}</div>
+                                    <div className="regdate">Registration Deadline: {new Date(gcdata.end_timeline).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
                                     <div className="description p-text">
                                         <p>
                                             {gcdata.description}
@@ -75,7 +75,7 @@ class Gc extends React.Component {
                                 <table className="hostel-score">
                                     {scoresdata.map((output, id) => (
                                         <tr className="hostel hd2" key={id}>
-                                            <td className="hostname">Hostel {output.hostel_id}</td>
+                                            <td className="hostname"> {output.hostel_name}</td>
                                             <motion.div
                                                 initial={{ width: 0 }}
                                                 animate={{ width: output.score * 65 / (maxscore.score) + "%" }}
