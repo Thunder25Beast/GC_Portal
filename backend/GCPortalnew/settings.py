@@ -23,19 +23,20 @@ SECRET_KEY = 'django-insecure-8rfr0s5v!%4an&suwpm4=%x8g=&0!u2-d&qp3&lu#yub@$+_ic
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True  # Make sure debug is off in production
 
-ALLOWED_HOSTS = [
-    'gcbackend.tech-iitb.org',
-    'gc.tech-iitb.org',
-    'localhost',
-    '127.0.0.1',
-]
+# ALLOWED_HOSTS = [
+#     'gcbackend.tech-iitb.org',
+#     'gc.tech-iitb.org',
+#     'localhost',
+#     '127.0.0.1',
+# ]
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://gcbackend.tech-iitb.org',
-    'https://gc.tech-iitb.org',
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     'https://gcbackend.tech-iitb.org',
+#     'https://gc.tech-iitb.org',
+#     'http://localhost:8000',
+# ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -54,9 +55,8 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
 }
 
 MIDDLEWARE = [

@@ -1,643 +1,210 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../assets/css/gc-list.css";
 import { motion } from "framer-motion";
 
-class GC_Genre1 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Mydata: [],
-    };
-    this.config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Token " + "3af5accdebeb5b899e6f9197b0b822f657af008f",
-      },
-    };
-  }
+// Configuration for API requests
+const API_CONFIG = {
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Token 3af5accdebeb5b899e6f9197b0b822f657af008f",
+  },
+};
 
-  componentDidMount() {
-    axios // loading backend data
-      .get("https://gcbackend.tech-iitb.org/gc/genre1/", this.config)
-      .then((res) => {
-        this.setState({
-          Mydata: res.data,
+// Utility function for prep type classification
+const getPrepTypeClass = (prepType) => {
+  switch (prepType) {
+    case 'High Prep': return 'prep-high';
+    case 'Medium Prep': return 'prep-medium';
+    case 'Low Prep': return 'prep-low';
+    default: return 'prep-default';
+  }
+};
+
+// Sidebar component
+const GenreSidebar = ({ currentGenre }) => {
+  const genres = [
+    { path: "/GC/Genre1", icon: "fas fa-th-large", title: "Software" },
+    { path: "/GC/Genre2", icon: "fas fa-stethoscope", title: "Hardware" },
+    { path: "/GC/Genre3", icon: "fas fa-user-md", title: "Pure Sciences" },
+    { path: "/GC/Genre4", icon: "fas fa-user-md", title: "Non Core" }
+  ];
+
+  return (
+    <div className="sidebarhs">
+      <ul id="ul">
+        {genres.map((genre) => (
+          <li
+            key={genre.path}
+            id={genre.path === currentGenre ? "active-genre-page" : ""}
+          >
+            <div className="display">
+              <Link to={genre.path}>
+                <i className={genre.icon}></i>
+                <button className={`titles ${genre.path === currentGenre ? '.btnhs' : ''}`}>
+                  {genre.title}
+                </button>
+              </Link>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+// GC Card component
+const GCCard = ({ gc, genreName }) => {
+  return (
+    <motion.div
+      className="gc-card"
+      whileHover={{ scale: 1.05 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      <Link to={`/GC/Genre1/${gc.id}`} className="gc-card-link">
+        <div className="gc-card-image">
+          <img
+            src={`https://gcbackend.tech-iitb.org${gc.poster}`}
+            alt={gc.name}
+            draggable="false"
+          />
+        </div>
+        <div className="gc-card-details">
+          <h3>{gc.name}</h3>
+          <div className="gc-card-meta">
+            <span className={`gc-card-genre ${getPrepTypeClass(gc.prep)}`}>
+              {gc.prep}
+            </span>
+            <span className="gc-card-club">{gc.club}</span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+};
+
+// Loading state component
+const LoadingState = ({ genreName }) => (
+  <div className="loading-container">
+    <div className="spinner"></div>
+    <p>Loading {genreName} GCs...</p>
+  </div>
+);
+
+// Error state component
+const ErrorState = ({ error, onRetry }) => (
+  <div className="error-container">
+    <h2>Error Loading GCs</h2>
+    <p>{error}</p>
+    <button onClick={onRetry}>Retry</button>
+  </div>
+);
+
+// Empty state component
+const EmptyState = ({ genreName }) => (
+  <div className="empty-state">
+    <h1>No GCs Available</h1>
+    <p>There are currently no Group Challenges in the {genreName} category.</p>
+  </div>
+);
+
+// Genre-specific configuration
+const GENRE_CONFIG = {
+  Genre1: {
+    endpoint: 'genre1',
+    name: 'Software',
+    path: '/GC/Genre1'
+  },
+  Genre2: {
+    endpoint: 'genre2',
+    name: 'Hardware',
+    path: '/GC/Genre2'
+  },
+  Genre3: {
+    endpoint: 'genre3',
+    name: 'Pure Sciences',
+    path: '/GC/Genre3'
+  },
+  Genre4: {
+    endpoint: 'genre4',
+    name: 'Non Core',
+    path: '/GC/Genre4'
+  }
+};
+
+// Main Genre List Component
+const GenreList = ({ genreKey }) => {
+  const [state, setState] = useState({
+    gcs: [],
+    isLoading: true,
+    error: null
+  });
+
+  const genreConfig = GENRE_CONFIG[genreKey];
+
+  useEffect(() => {
+    const fetchGCs = async () => {
+      try {
+        const response = await axios.get(
+          `https://gcbackend.tech-iitb.org/gc/${genreConfig.endpoint}/`,
+          API_CONFIG
+        );
+
+        setState({
+          gcs: response.data,
+          isLoading: false,
+          error: null
         });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
-    import("../assets/js/gclist.js") //importing script
-      .then((module) => {
-        // console.log("gclist.js loaded successfully");
-      })
-      .catch((error) => {
-        console.error("Error loading gclist.js:", error);
-      });
-  }
-
-  render() {
-    const { Mydata } = this.state;
-    // console.log(Mydata);
-    if (Mydata.length === 0) {
-      return (
-        <div className="gclist">
-          <div className="sidebarhs">
-            <ul id="ul">
-              <li id="active-genre-page">
-                <div className="display">
-                  <Link to="/GC/Genre1">
-                    <i className="fas fa-th-large"></i>
-                    <button className="titles .btnhs">Software</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre2">
-                    <i className="fas fa-stethoscope"></i>
-                    <button className="titles ">Hardware</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre3">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Pure Sciences</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre4">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Non Core</button>
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <h1 style={{ color: "white" }}>NO GC TO SHOW</h1>;
-        </div>
-      );
-    } else {
-      return (
-        <div className="gclist">
-          <div className="sidebarhs">
-            <ul id="ul">
-              <li id="active-genre-page">
-                <div className="display">
-                  <Link to="/GC/Genre1">
-                    <i className="fas fa-th-large"></i>
-                    <button className="titles .btnhs">Software</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre2">
-                    <i className="fas fa-stethoscope"></i>
-                    <button className="titles ">Hardware</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre3">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Pure Sciences</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre4">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Non Core</button>
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="wrapper">
-            {/* <i id="left" className="fa-solid fa-angle-left"></i> */}
-            <ul className="carousel">
-              {Mydata.map((post) => {
-                const { id, name, description, poster } = post;
-                return (
-                  <motion.div
-                    key={id}
-                    className="card"
-                  // whileHover={{ scale: 1.07 }}
-                  // whileTap={{ scale: 2, opacity: 0 }}
-                  // transition={{
-                  //   duration: 0.3,
-                  // }}
-                  >
-                    <li className="card" key={id}>
-                      <div className="img">
-                        <Link to={`/GC/Genre1/${id}`}>
-                          <img
-                            src={"https://gcbackend.tech-iitb.org" + poster}
-                            alt="img"
-                            draggable="false"
-                          />
-                        </Link>
-                      </div>
-                    </li>
-                  </motion.div>
-                );
-              })}
-            </ul>
-            {/* <i id="right" className="fa-solid fa-angle-right"></i> */}
-          </div>
-        </div>
-      );
-    }
-  }
-}
-class GC_Genre2 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { Mydata: [] };
-    this.config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Token " + "3af5accdebeb5b899e6f9197b0b822f657af008f",
-      },
-    };
-  }
-
-  componentDidMount() {
-    axios // loading backend data
-      .get("https://gcbackend.tech-iitb.org/gc/genre2/", this.config)
-      .then((res) => {
-        this.setState({
-          Mydata: res.data,
+      } catch (error) {
+        setState({
+          gcs: [],
+          isLoading: false,
+          error: error.message
         });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
-    import("../assets/js/gclist.js") //importing script
-      .then((module) => {
-        // console.log("gclist.js loaded successfully");
-      })
-      .catch((error) => {
-        console.error("Error loading gclist.js:", error);
-      });
-  }
-  render() {
-    const { Mydata } = this.state;
-    // console.log(Mydata);
-    if (Mydata.length === 0) {
-      return (
-        <div className="gclist">
-          <div className="sidebarhs">
-            <ul id="ul">
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre1">
-                    <i className="fas fa-th-large"></i>
-                    <button className="titles .btnhs">Software</button>
-                  </Link>
-                </div>
-              </li>
-              <li id="active-genre-page">
-                <div className="display">
-                  <Link to="/GC/Genre2">
-                    <i className="fas fa-stethoscope"></i>
-                    <button className="titles ">Hardware</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre3">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Pure Sciences</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre4">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Non Core</button>
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <h1 style={{ color: "white" }}>NO GC TO SHOW</h1>;
-        </div>
-      );
-    } else {
-      return (
-        <div className="gclist">
-          <div className="sidebarhs">
-            <ul id="ul">
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre1">
-                    <i className="fas fa-th-large"></i>
-                    <button className="titles .btnhs">Software </button>
-                  </Link>
-                </div>
-              </li>
-              <li id="active-genre-page">
-                <div className="display">
-                  <Link to="/GC/Genre2">
-                    <i className="fas fa-stethoscope"></i>
-                    <button className="titles ">Hardware</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre3">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Pure Sciences</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre4">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Non Core</button>
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div className="wrapper">
-            {/* <i id="left" className="fa-solid fa-angle-left"></i> */}
-            <ul className="carousel">
-              {Mydata.map((post) => {
-                const { id, name, description, poster } = post;
-                return (
-                  // <li className="card" key={id}>
-                  <motion.div
-                    key={id}
-                    className="card"
-                  // whileHover={{ scale: 1.07 }}
-                  // whileTap={{ scale: 2, opacity: 0 }}
-                  // transition={{
-                  //   duration: 0.3,
-                  // }}
-                  >
-                    <div className="img">
-                      <Link to={`/GC/Genre1/${id}`}>
-                        <img
-                          src={"https://gcbackend.tech-iitb.org" + poster}
-                          alt="img"
-                          draggable="false"
-                        />
-                      </Link>
-                    </div>
-                  </motion.div>
-                  // </li>
-                );
-              })}
-            </ul>
-            {/* <i id="right" className="fa-solid fa-angle-right"></i> */}
-          </div>
-        </div>
-      );
-    }
-  }
-}
-
-class GC_Genre3 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Mydata: [],
+      }
     };
-    this.config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Token " + "3af5accdebeb5b899e6f9197b0b822f657af008f",
-      },
-    };
-  }
 
-  componentDidMount() {
-    axios // loading backend data
-      .get("https://gcbackend.tech-iitb.org/gc/genre3/", this.config)
-      .then((res) => {
-        this.setState({
-          Mydata: res.data,
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+    fetchGCs();
+  }, [genreKey]);
 
-    import("../assets/js/gclist.js") //importing script
-      .then((module) => {
-        // console.log("gclist.js loaded successfully");
-      })
-      .catch((error) => {
-        console.error("Error loading gclist.js:", error);
-      });
-  }
-  render() {
-    const { Mydata } = this.state;
-    // console.log(Mydata);
-    if (Mydata.length === 0) {
-      return (
-        <div className="gclist">
-          <div className="sidebarhs">
-            <ul id="ul">
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre1">
-                    <i className="fas fa-th-large"></i>
-                    <button className="titles .btnhs">Software </button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre2">
-                    <i className="fas fa-stethoscope"></i>
-                    <button className="titles ">Hardware</button>
-                  </Link>
-                </div>
-              </li>
-              <li id="active-genre-page">
-                <div className="display">
-                  <Link to="/GC/Genre3">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Pure Sciences</button>
-                  </Link>
-                </div>
-              </li>{" "}
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre4">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Non Core</button>
-                  </Link>
-                </div>
-              </li>,
-            </ul>
-          </div>
-          <h1 style={{ color: "white" }}>NO GC TO SHOW</h1>;
-        </div>
-      );
-    } else {
-      return (
-        <div className="gclist">
-          <div className="sidebarhs">
-            <ul id="ul">
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre1">
-                    <i className="fas fa-th-large"></i>
-                    <button className="titles .btnhs">Software </button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre2">
-                    <i className="fas fa-stethoscope"></i>
-                    <button className="titles ">Hardware</button>
-                  </Link>
-                </div>
-              </li>
-              <li id="active-genre-page">
-                <div className="display">
-                  <Link to="/GC/Genre3">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Pure Sciences</button>
-                  </Link>
-                </div>
-              </li>{" "}
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre4">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Non Core</button>
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </div>
+  const handleRetry = () => {
+    setState(prev => ({ ...prev, isLoading: true, error: null }));
+  };
 
-          <div className="wrapper">
-            {/* <i id="left" className="fa-solid fa-angle-left"></i> */}
-            <ul className="carousel">
-              {Mydata.map((post) => {
-                const { id, name, description, poster } = post;
-                return (
-                  <li className="card" key={id}>
-                    {/* <motion.div
-                    key={id}
-                    className="cards"
-                    whileHover={{ scale: 1.07 }}
-                    whileTap={{ scale: 2, opacity: 0 }}
-                    transition={{
-                      duration: 0.3,
-                    }}
-                  > */}
-                    <motion.div
-                      className="img"
-                    // whileHover={{ scale: 1.07 }}
-                    // whileTap={{ scale: 2, opacity: 0 }}
-                    // transition={{
-                    //   duration: 0.3,
-                    // }}
-                    >
-                      <Link to={`/GC/Genre1/${id}`}>
-                        <img
-                          src={"https://gcbackend.tech-iitb.org" + poster}
-                          alt="img"
-                          draggable="false"
-                        />
-                      </Link>
-                    </motion.div>
-                    {/* </motion.div> */}
-                  </li>
-                );
-              })}
-            </ul>
-            {/* <i id="right" className="fa-solid fa-angle-right"></i> */}
+  return (
+    <div className="gclist">
+      <GenreSidebar currentGenre={genreConfig.path} />
+      <div className="genre-content">
+        {state.isLoading ? (
+          <LoadingState genreName={genreConfig.name} />
+        ) : state.error ? (
+          <ErrorState
+            error={state.error}
+            onRetry={handleRetry}
+          />
+        ) : state.gcs.length === 0 ? (
+          <EmptyState genreName={genreConfig.name} />
+        ) : (
+          <div className="gc-grid">
+            {state.gcs.map(gc => (
+              <GCCard
+                key={gc.id}
+                gc={gc}
+                genreName={genreConfig.name}
+              />
+            ))}
           </div>
-        </div>
-      );
-    }
-  }
-}
-class GC_Genre4 extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      Mydata: [],
-    };
-    this.config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Token " + "3af5accdebeb5b899e6f9197b0b822f657af008f",
-      },
-    };
-  }
+        )}
+      </div>
+    </div>
+  );
+};
 
-  componentDidMount() {
-    axios // loading backend data
-      .get("https://gcbackend.tech-iitb.org/gc/genre4/", this.config)
-      .then((res) => {
-        this.setState({
-          Mydata: res.data,
-        });
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+// Genre-specific components for routing
+const GC_Genre1 = () => <GenreList genreKey="Genre1" />;
+const GC_Genre2 = () => <GenreList genreKey="Genre2" />;
+const GC_Genre3 = () => <GenreList genreKey="Genre3" />;
+const GC_Genre4 = () => <GenreList genreKey="Genre4" />;
 
-    import("../assets/js/gclist.js") //importing script
-      .then((module) => {
-        // console.log("gclist.js loaded successfully");
-      })
-      .catch((error) => {
-        console.error("Error loading gclist.js:", error);
-      });
-  }
-  render() {
-    const { Mydata } = this.state;
-    // console.log(Mydata);
-    if (Mydata.length === 0) {
-      return (
-        <div className="gclist">
-          <div className="sidebarhs">
-            <ul id="ul">
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre1">
-                    <i className="fas fa-th-large"></i>
-                    <button className="titles .btnhs">Software </button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre2">
-                    <i className="fas fa-stethoscope"></i>
-                    <button className="titles ">Hardware</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre3">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Pure Sciences</button>
-                  </Link>
-                </div>
-              </li>{" "}
-              <li id="active-genre-page">
-                <div className="display">
-                  <Link to="/GC/Genre4">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Non Core</button>
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <h1 style={{ color: "white" }}>NO GC TO SHOW</h1>;
-        </div>
-      );
-    } else {
-      return (
-        <div className="gclist">
-          <div className="sidebarhs">
-            <ul id="ul">
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre1">
-                    <i className="fas fa-th-large"></i>
-                    <button className="titles .btnhs">Software </button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre2">
-                    <i className="fas fa-stethoscope"></i>
-                    <button className="titles ">Hardware</button>
-                  </Link>
-                </div>
-              </li>
-              <li>
-                <div className="display">
-                  <Link to="/GC/Genre3">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Pure Sciences</button>
-                  </Link>
-                </div>
-              </li>{" "}
-              <li id="active-genre-page">
-                <div className="display">
-                  <Link to="/GC/Genre4">
-                    <i className="fas fa-user-md"></i>
-                    <button className="titles">Non Core</button>
-                  </Link>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div className="wrapper">
-            {/* <i id="left" className="fa-solid fa-angle-left"></i> */}
-            <ul className="carousel">
-              {Mydata.map((post) => {
-                const { id, name, description, poster } = post;
-                return (
-                  <li className="card" key={id}>
-                    {/* <motion.div
-                    key={id}
-                    className="cards"
-                    whileHover={{ scale: 1.07 }}
-                    whileTap={{ scale: 2, opacity: 0 }}
-                    transition={{
-                      duration: 0.3,
-                    }}
-                  > */}
-                    <motion.div
-                      className="img"
-                    // whileHover={{ scale: 1.07 }}
-                    // whileTap={{ scale: 2, opacity: 0 }}
-                    // transition={{
-                    //   duration: 0.3,
-                    // }}
-                    >
-                      <Link to={`/GC/Genre1/${id}`}>
-                        <img
-                          src={"https://gcbackend.tech-iitb.org" + poster}
-                          alt="img"
-                          draggable="false"
-                        />
-                      </Link>
-                    </motion.div>
-                    {/* </motion.div> */}
-                  </li>
-                );
-              })}
-            </ul>
-            {/* <i id="right" className="fa-solid fa-angle-right"></i> */}
-          </div>
-        </div>
-      );
-    }
-  }
-}
 export { GC_Genre1, GC_Genre2, GC_Genre3, GC_Genre4 };

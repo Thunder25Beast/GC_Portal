@@ -54,8 +54,6 @@ def backendgcscore(request, id):
 
 
 @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 def overall(request):
     scorecard = list(Hostel.objects.all().values('name'))
 
@@ -127,8 +125,6 @@ def local_genre(genre):
 
 
 @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 def genrewise_scorecard(request, genre):  # Don't Return individual GC details
     Genre = GCEvent.objects.filter(genre=genre)
     scorecard = list(Hostel.objects.all().values('name'))
@@ -157,32 +153,30 @@ def genrewise_scorecard(request, genre):  # Don't Return individual GC details
 
 
 @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 def individualgc(request, id):  # GC ke details return
-    gc = GCEvent.objects.get(id=id)
-    GCnew = GCEvent.objects.filter(id=id)
-    serializer = gcserializer(GCnew, many=True)
+    try:
+        gc = GCEvent.objects.get(id=id)
+        GCnew = GCEvent.objects.filter(id=id)
+        serializer = gcserializer(GCnew, many=True)
 
-    # if gc.timeline <= datetime.datetime.now():
-    if 2 > 1:
-        scores = Score.objects.filter(event=gc).values().order_by('-score')
-        for i in range(len(scores)):
-            scores[i]['hostel_name'] = Hostel.objects.get(
-                id=scores[i]['hostel_id']).name
+        # if gc.timeline <= datetime.datetime.now():
+        if 2 > 1:
+            scores = Score.objects.filter(event=gc).values().order_by('-score')
+            for i in range(len(scores)):
+                scores[i]['hostel_name'] = Hostel.objects.get(
+                    id=scores[i]['hostel_id']).name
 
-        return Response({
-            "scores": scores,
-            "gc": serializer.data
-        })
-    else:
-        return HttpResponse("NO SCORE TO SHOW YET")  # GC has not yet ended
-    
+            return Response({
+                "scores": scores,
+                "gc": serializer.data
+            })
+        else:
+            return HttpResponse("NO SCORE TO SHOW YET")  # GC has not yet ended
+    except GCEvent.DoesNotExist:
+        return Response({"error": f"GC event with id {id} does not exist"}, status=404)
 
 
 @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 def hostel_scorecard(request, name):
     hostel = Hostel.objects.get(name=name)
     scores = Score.objects.filter(hostel=hostel)
@@ -198,9 +192,6 @@ def hostel_scorecard(request, name):
 
     details = {}
     overall_rank = overall_score = 0
-    # overall_url = 'https://itc.gymkhana.iitb.ac.in/gcbackend/overall/'
-    # overall_scorecard = requests.get(overall_url, headers={
-    #                                 'Authorization': 'Token 3af5accdebeb5b899e6f9197b0b822f657af008f'}).json()
     overall_scorecard = local_overall()
     for rank, item in enumerate(overall_scorecard, start=1):
         if item['name'] == name:
@@ -210,8 +201,6 @@ def hostel_scorecard(request, name):
     genres = GCEvent.objects.distinct().values('genre')
     for genre in genres:
         genre_url = 'https://gcbackend.tech-iitb.org/genre' + genre['genre'] + '/'
-        # genre_scorecard = requests.get(genre_url, headers={
-            # 'Authorization': 'Token 3af5accdebeb5b899e6f9197b0b822f657af008f'}).json()
         genre_scorecard = local_genre(genre)    
         for rank, item in enumerate(genre_scorecard, start=1):
             if item['name'] == name:
@@ -226,8 +215,6 @@ def hostel_scorecard(request, name):
 
 # an api to return all events in a particular genre
 @api_view(['GET'])
-@authentication_classes([TokenAuthentication])
-@permission_classes([IsAuthenticated])
 def gc_events(request, genre):
     events = GCEvent.objects.filter(genre=genre)
     serializer = gcserializer(events, many=True)
