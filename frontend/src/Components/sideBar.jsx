@@ -24,6 +24,11 @@ const routes = [
     name: "GCs",
     icon: "🏅",
   },
+  {
+    path: "/analytics",
+    name: "Analytics",
+    icon: "📊", 
+  },
 ];
 
 const SideBar = ({ children }) => {

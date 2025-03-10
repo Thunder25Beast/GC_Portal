@@ -1,0 +1,18 @@
+/* analytics.css */
+.dashboard-analytics {
+    padding: 1rem;
+    background: url("../meetings-page-bg.jpg");
+    /* border: 1px solid #ddd; */
+    /* border-radius: 8px; */
+    height: 100%;
+  }
+  .analytics-container{
+    width: 70%;
+  }
+  .dashboard-analytics h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #333;
+  }
+  

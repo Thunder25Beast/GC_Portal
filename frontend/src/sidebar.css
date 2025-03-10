@@ -4,8 +4,8 @@
   background: #2b3035;
   /* background: rgb(0, 7, 61); */
   color: white;
-  min-height: 100vh;
-
+  /* min-height: 100vh; */
+  height: 100%;
   /* overflow-y: auto; */
 
   /* min-height: 100%; */
@@ -26,7 +26,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 10px;
-  margin-top: 12px;
+  /* margin-top: 12px; */
 }
 .logo {
   font-size: 18px;

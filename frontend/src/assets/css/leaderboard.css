@@ -1,5 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap');
 
+html, body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #1f262c;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+  margin: 0.5rem 0;
+}
 .bg {
   background-image: url(../meetings-page-bg.jpg);
   padding: 10px;
@@ -80,6 +95,7 @@ h2::before {
 }
 .leaderboard-cards {
   /* width: 400px; */
+  border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   min-height: 120px;
   display: flex;
@@ -129,7 +145,7 @@ h2::before {
   text-align: center;
   /* width: 30%; */
   padding: 0 ;
-  margin-left: 24%;
+  margin-left: 20%;
   position: relative;
   background-color: #d1d5db1d;
   border-bottom-left-radius: 10px;
@@ -138,7 +154,7 @@ h2::before {
   border-top-right-radius: 10px;
   height: 60px;
   /* height: fit-content; */
-  width: 52%;
+  width: 60%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -171,7 +187,7 @@ h2::before {
   color: white;
 }
 .list_items {
-  margin: 5%;
+  /* margin: 5%; */
   position: relative;
   list-style: none;
   padding: 4px;
@@ -278,15 +294,18 @@ h2::before {
   scale: 1.1;
 }
 .button-2 {
-  background-color: rgba(198, 198, 198);
+  text-align: center;
+  /* height: 60%; */
+  background-color: rgb(198, 198, 198);
   border: 3px solid rgba(198, 198, 198);
   border-radius: 4px;
   font-family: Montserrat;
   font-size: small;
   -webkit-transition: all 0.15s ease-in-out;
   transition: all 0.15s ease-in-out;
-  /* color: grey; */
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -458,7 +477,7 @@ h3 {
     width: 350px;
   }
 }
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width:800px) {
   .hello {
     width: 300px;
   }
@@ -473,7 +492,7 @@ h3 {
   }
   .leaderboard-card_heading .numberds,
   .leaderboard-card_heading .nameds {
-    font-size: 20px;
+    font-size: 4vw;
     font-weight: 500;
   }
   .leaderboard-cards {
@@ -600,25 +619,107 @@ h3 {
     width: 170px;
   }
 }
-@media only screen and (max-width: 460px) {
+@media only screen and (max-width: 700px) {
   .listing{
+    margin-left: 5%;
     width: 90%;
-    height: 120px;
+    height: 21.5vh;
     display: flex;
     flex-wrap: wrap;
     padding: 0;
     justify-content: space-evenly;
   }
-  
-  .listing .button-2{
-    margin-top: 0.8rem;
-    width: 80px;
-    /* margin-left: ; */
+  .listing .list_items {
+    flex: 0 0 calc(50% - 10px); /* 10px accounts for margins/gaps */
+    box-sizing: border-box;
+    margin: 5px;
   }
-
+  .listing .button-2{
+    /* margin-top: 0.8rem; */
+    width: 80px;
+    margin-left: 0.5vw;
+  }
+  .button-2{
+    margin-top: 0.8rem;
+  }
   .button-1{
     margin-top: 0.8rem;
     width: 80px;
   }
+}
 
+/* Ensure the Link container has no default underline and some outer margin */
+.leaderboard-items {
+  margin: 0.5rem;
+  display: block;
+  text-decoration: none;
+}
+
+/* Card container: gives a modern look with rounded corners, a subtle background, and shadow */
+.leaderboard-cards {
+  border-radius: 8px;
+  background-color: #2a2e33;  /* Slightly lighter dark background for the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.leaderboard-cards:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* First section: Image and hostel name/tittle */
+.leaderboard-card_heading {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Image container styling */
+.leaderboard-card_heading .image {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.leaderboard-card_heading .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card contents: vertical alignment and spacing */
+.card-contents {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Primary text (hostel name, rank number, score) styling */
+.numberds {
+  font-size: 0.5vw;
+  font-weight: 700;
+  color: #ffcc00;  /* Highlight color */
+  margin-bottom: 4px;
+}
+
+/* Secondary text (title, labels) styling */
+
+.nameds {
+  font-size: 1.5vw;
+  font-weight: 500;
+  color: #fff;
+}
+
+/* For the second heading (Rank and Total Score), center content */
+.leaderboard-cards .leaderboard-card_heading:last-of-type .card-contents {
+  text-align: center;
+}
+
+/* Adjust font sizes in the lower section slightly */
+.leaderboard-cards .leaderboard-card_heading:last-of-type .numberds {
+  font-size: 20px;
 }

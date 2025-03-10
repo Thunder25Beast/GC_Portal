@@ -4,6 +4,9 @@ import "../assets/css/leaderboard.css";
 import ScoreboardAnimation from "../Animation";
 import axios from "axios";
 
+import Announcements from "../Components/Announcements";
+
+
 class Overall extends React.Component {
   constructor(props) {
     super(props);
@@ -77,6 +80,7 @@ class Overall extends React.Component {
     );
     return (
       <div className="bg">
+        <Announcements />
         <div className="leaderboard_heading">
           <h2 data-text="Leaderboards">Leaderboard 24-25</h2>
         </div>
@@ -88,9 +92,6 @@ class Overall extends React.Component {
               </li>
             </ul>
             <ul className="listing">
-              {/* <li className="list_items button-2">
-                <Link to="/Overall">Overall</Link>
-              </li> */}
               <li className="list_items button-2">
                 <Link to="/Genre1">Software</Link>
               </li>
@@ -106,114 +107,113 @@ class Overall extends React.Component {
             </ul>
           </div>
         </div>
-        <dir className="leaderboard-cards-container">
-          <Link to={`/dashboard/${first.name}`} className="leaderboard-items">
-            <div className="leaderboard-cards leaderboard-card-first">
-              <div className="leaderboard-card_heading">
-                <div className="image">
-                  <img src={firstdata?.image} alt="Hostel Image" />
-                </div>
-                <div className="card-contents">
-                  <div className="numberds">{first.name}</div>
-                  <div className="nameds">{firstdata?.tittle}</div>
-                </div>
-              </div>
-              <div className="leaderboard-card_heading">
-                <div className="card-contents">
-                  <div className="numberds">1st</div>
-                  <div className="nameds">Rank</div>
-                </div>
-                <div className="card-contents">
-                  <div className="numberds">{first.total_score}</div>
-                  <div className="nameds">Total Score</div>
-                </div>
-              </div>
-            </div>
-          </Link>
-          <Link to={`/dashboard/${second.name}`} className="leaderboard-items">
-            <div className="leaderboard-cards leaderboard-card-second">
-              <div className="leaderboard-card_heading">
-                <div className="image">
-                  <img src={seconddata?.image} alt="Hostel Image" />
-                </div>
-                <div className="card-contents">
-                  <div className="numberds">{second.name}</div>
-                  <div className="nameds">{seconddata?.tittle}</div>
-                </div>
-              </div>
-              <div className="leaderboard-card_heading">
-                <div className="card-contents">
-                  <div className="numberds">2nd</div>
-                  <div className="nameds">Rank</div>
-                </div>
-                <div className="card-contents">
-                  <div className="numberds">{second.total_score}</div>
-                  <div className="nameds">Total Score</div>
-                </div>
-              </div>
-            </div>
-          </Link>
-          <Link to={`/dashboard/${third.name}`} className="leaderboard-items">
-            <div className="leaderboard-cards leaderboard-card-third">
-              <div className="leaderboard-card_heading">
-                <div className="image">
-                  <img src={thirddata?.image} alt="Hostel Image" />
-                </div>
-                <div className="card-contents">
-                  <div className="numberds">{third.name}</div>
-                  <div className="nameds">{thirddata?.tittle}</div>
-                </div>
-              </div>
-              <div className="leaderboard-card_heading">
-                <div className="card-contents">
-                  <div className="numberds">3rd</div>
-                  <div className="nameds">Rank</div>
-                </div>
-                <div className="card-contents">
-                  <div className="numberds">{third.total_score}</div>
-                  <div className="nameds">Total Score</div>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </dir>
-        {this.state.details.map((output, id) => {
-          if (id === 0 || id === 1 || id === 2 ) {
-            return null;
-          }
-          const hostelInfo = hostelData.find(
-            (hostelInfo) => hostelInfo.name === output.name
-          );
-          return (
-            <Link to={`/dashboard/${output.name}`} key={id}>
-              <div>
-                <ScoreboardAnimation id={output.rank}>
-                  <div className={output.rank}>
-                    <div className="position" style={{ width: 20 }}>
-                      <h4>{output.rank}</h4>
-                    </div>
-                    <div className="hello">
-                      <div className="image_leaderboard">
-                        {/* Render hostel image */}
-                        <img src={hostelInfo?.image} alt="img_hostel" />
-                      </div>
-                      <div className="name" style={{ width: 240 }}>
-                        <h3 className="name text-dark" style={{ margin: 0 }}>
-                          {output.name}-{hostelInfo?.tittle}
-                        </h3>
-                        {/* <div className="span"></div> */}
-                      </div>
-                    </div>
-
-                    <div className="score">
-                      <span>{output.total_score}</span>
-                    </div>
+        <div className="leaderboard-wrapper">
+          <div className="leaderboard-cards-container">
+            <Link to={`/dashboard/${first.name}`} className="leaderboard-items">
+              <div className="leaderboard-cards leaderboard-card-first">
+                <div className="leaderboard-card_heading">
+                  <div className="image">
+                    <img src={firstdata?.image} alt="Hostel Image" />
                   </div>
-                </ScoreboardAnimation>
+                  <div className="card-contents">
+                    <div className="numberds">{first.name}</div>
+                    <div className="nameds">{firstdata?.tittle}</div>
+                  </div>
+                </div>
+                <div className="leaderboard-card_heading">
+                  <div className="card-contents">
+                    <div className="numberds">1st</div>
+                    <div className="nameds">Rank</div>
+                  </div>
+                  <div className="card-contents">
+                    <div className="numberds">{first.total_score}</div>
+                    <div className="nameds">Total Score</div>
+                  </div>
+                </div>
               </div>
             </Link>
-          );
-        })}
+            <Link to={`/dashboard/${second.name}`} className="leaderboard-items">
+              <div className="leaderboard-cards leaderboard-card-second">
+                <div className="leaderboard-card_heading">
+                  <div className="image">
+                    <img src={seconddata?.image} alt="Hostel Image" />
+                  </div>
+                  <div className="card-contents">
+                    <div className="numberds">{second.name}</div>
+                    <div className="nameds">{seconddata?.tittle}</div>
+                  </div>
+                </div>
+                <div className="leaderboard-card_heading">
+                  <div className="card-contents">
+                    <div className="numberds">2nd</div>
+                    <div className="nameds">Rank</div>
+                  </div>
+                  <div className="card-contents">
+                    <div className="numberds">{second.total_score}</div>
+                    <div className="nameds">Total Score</div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link to={`/dashboard/${third.name}`} className="leaderboard-items">
+              <div className="leaderboard-cards leaderboard-card-third">
+                <div className="leaderboard-card_heading">
+                  <div className="image">
+                    <img src={thirddata?.image} alt="Hostel Image" />
+                  </div>
+                  <div className="card-contents">
+                    <div className="numberds">{third.name}</div>
+                    <div className="nameds">{thirddata?.tittle}</div>
+                  </div>
+                </div>
+                <div className="leaderboard-card_heading">
+                  <div className="card-contents">
+                    <div className="numberds">3rd</div>
+                    <div className="nameds">Rank</div>
+                  </div>
+                  <div className="card-contents">
+                    <div className="numberds">{third.total_score}</div>
+                    <div className="nameds">Total Score</div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+          {this.state.details.map((output, id) => {
+            if (id === 0 || id === 1 || id === 2) {
+              return null;
+            }
+            const hostelInfo = hostelData.find(
+              (hostelInfo) => hostelInfo.name === output.name
+            );
+            return (
+              <Link to={`/dashboard/${output.name}`} key={id}>
+                <div>
+                  <ScoreboardAnimation id={output.rank}>
+                    <div className={output.rank}>
+                      <div className="position" style={{ width: 20 }}>
+                        <h4>{output.rank}</h4>
+                      </div>
+                      <div className="hello">
+                        <div className="image_leaderboard">
+                          <img src={hostelInfo?.image} alt="img_hostel" />
+                        </div>
+                        <div className="name" style={{ width: 240 }}>
+                          <h3 className="name text-dark" style={{ margin: 0 }}>
+                            {output.name}-{hostelInfo?.tittle}
+                          </h3>
+                        </div>
+                      </div>
+                      <div className="score">
+                        <span>{output.total_score}</span>
+                      </div>
+                    </div>
+                  </ScoreboardAnimation>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     );
   }
